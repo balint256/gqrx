@@ -782,7 +782,14 @@ void MainWindow::updateGainStages(bool read_from_device)
         else
         {
             gain.value = gain.stop;
-            rx->set_gain(gain.name, gain.value);
+            try
+            {
+                rx->set_gain(gain.name, gain.value);
+            }
+            catch (std::runtime_error& e)
+            {
+                std::cerr << "Invalid gain stage: " << gain.name << std::endl;
+            }
         }
         gain_list.push_back(gain);
     }
@@ -871,7 +878,14 @@ void MainWindow::setFilterOffset(qint64 freq_hz)
  */
 void MainWindow::setGain(QString name, double gain)
 {
-    rx->set_gain(name.toStdString(), gain);
+    try
+    {
+        rx->set_gain(name.toStdString(), gain);
+    }
+    catch (std::runtime_error& e)
+    {
+        std::cerr << "Invalid gain stage: " << name.toStdString() << std::endl;
+    }
 }
 
 /** Enable / disable hardware AGC. */
