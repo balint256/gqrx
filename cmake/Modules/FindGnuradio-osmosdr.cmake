@@ -9,6 +9,7 @@ FIND_PATH(
         ${CMAKE_INSTALL_PREFIX}/include/osmosdr
     PATHS /usr/local/include/osmosdr
           /usr/include/osmosdr
+          /opt/local/include
 )
 
 FIND_LIBRARY(
@@ -22,6 +23,7 @@ FIND_LIBRARY(
           /usr/local/lib64
           /usr/lib
           /usr/lib64
+          /opt/local/lib
 )
 
 INCLUDE(FindPackageHandleStandardArgs)
